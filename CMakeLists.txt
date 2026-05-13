@@ -13,6 +13,7 @@ target_include_directories(mempool PUBLIC
 
 add_executable(test_mempool
     test/test_mempool.c
+    test/unity.c
 )
 
 target_include_directories(test_mempool PRIVATE
