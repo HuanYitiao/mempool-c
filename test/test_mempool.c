@@ -38,11 +38,21 @@ void test_free(void)
     TEST_ASSERT_EQUAL(old_head, mempool.free_head);
 }
 
+void test_alloc_exhausted(void)
+{
+    for (int i = 0; i < BLOCKCOUNT; i++)
+    {
+        mempool_alloc(&mempool);
+    }
+    TEST_ASSERT_NULL(mempool_alloc(&mempool));
+}
+
 int main(void)
 {
     UNITY_BEGIN();
     RUN_TEST(test_init);
     RUN_TEST(test_alloc);
     RUN_TEST(test_free);
+    RUN_TEST(test_alloc_exhausted);
     return UNITY_END();
 }
