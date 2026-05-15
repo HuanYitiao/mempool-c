@@ -47,6 +47,16 @@ void test_alloc_exhausted(void)
     TEST_ASSERT_NULL(mempool_alloc(&mempool));
 }
 
+void test_alloc_null_pool(void)
+{
+    TEST_ASSERT_NULL(mempool_alloc(NULL));
+}
+
+void test_free_null_block(void)
+{
+    mempool_free(&mempool, NULL);
+}
+
 int main(void)
 {
     UNITY_BEGIN();
@@ -54,5 +64,7 @@ int main(void)
     RUN_TEST(test_alloc);
     RUN_TEST(test_free);
     RUN_TEST(test_alloc_exhausted);
+    RUN_TEST(test_alloc_null_pool);
+    RUN_TEST(test_free_null_block);
     return UNITY_END();
 }

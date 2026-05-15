@@ -20,6 +20,11 @@ int mempool_init(mempool_t* mempool)
 
 void* mempool_alloc(mempool_t* mempool)
 {
+    if (NULL == mempool)
+    {
+        return NULL;
+    }
+
     if (NULL == mempool->free_head)
     {
         return NULL;
@@ -31,6 +36,16 @@ void* mempool_alloc(mempool_t* mempool)
 
 void mempool_free(mempool_t* mempool, void* head)
 {
+    if (NULL == mempool)
+    {
+        return;
+    }
+
+    if (NULL == head)
+    {
+        return;
+    }
+
     node_t* block      = (node_t*)head;
     block->next        = mempool->free_head;
     mempool->free_head = block;
